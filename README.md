@@ -2,7 +2,7 @@
 
 # GoogleAnalytics Package
 Programmatically create, access and manage Google Analytics entities such as accounts, properties, views, etc. Manage user permissions and import data.
-* Domain: [GoogleAnalytics](https://www.google.com/)
+* Domain: [GoogleAnalytics](https://analytics.google.com)
 * Credentials: apiKey, apiSecret
 
 ## How to get credentials: 

@@ -2,7 +2,7 @@
     "package": "GoogleAnalytics",
     "tagline": "GoogleAnalytics API",
     "description": "Programmatically create, access and manage Google Analytics entities such as accounts, properties, views, etc. Manage user permissions and import data.",
-    "image": "https:\/\/logo.clearbit.com\/metacert.com",
+    "image": "https:\/\/logo.clearbit.com\/analytics.google.com",
     "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-GoogleAnalytics-Package",
     "keywords": [
         "API",
@@ -11,7 +11,7 @@
         "marketing"
     ],
     "accounts": {
-        "domain": "https:\/\/www.google.com\/",
+        "domain": "https:\/\/www.analytics.google.com\/",
         "credentials": [
             "apiKey",
             "apiSecret"
