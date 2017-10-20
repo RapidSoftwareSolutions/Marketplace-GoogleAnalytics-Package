@@ -4181,7 +4181,7 @@
                 "vendorFieldsStructure": [
                     {
                         "filterRef": {
-                            "idlocal": "{filterRefId}"
+                            "id": "{filterRefId}"
                         }
                     }
                 ],
