@@ -15,7 +15,7 @@ $app->post('/api/GoogleAnalytics/deleteUploadData', function ($request, $respons
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','customDataSourceId'=>'customDataSourceId', 'customDataImportUids' => 'customDataImportUids'];
     $optionalParams = [];
     $bodyParams = [
-       'query' => ['customDataImportUids']
+       'json' => ['customDataImportUids']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

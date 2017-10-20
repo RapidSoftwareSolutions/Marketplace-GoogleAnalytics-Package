@@ -5765,7 +5765,7 @@
                 "method": "post",
                 "requestParameters": [
                     {
-                        "type": "query",
+                        "type": "json",
                         "parameters": [
                             "customDataImportUids"
                         ]

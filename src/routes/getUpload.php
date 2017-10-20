@@ -24,7 +24,7 @@ $app->post('/api/GoogleAnalytics/getUpload', function ($request, $response) {
     $data['fields'] = \Models\Params::toString($data['fields'], ','); 
 
     $client = $this->httpClient;
-    $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/customDataSources/{$data['customDataSourceId']}/uploadss/{$data['uploadId']}";
+    $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/customDataSources/{$data['customDataSourceId']}/uploads/{$data['uploadId']}";
 
     
 
