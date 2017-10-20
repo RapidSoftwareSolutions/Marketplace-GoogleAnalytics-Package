@@ -5725,6 +5725,17 @@
                     "type": "String",
                     "info": "Custom data source Id",
                     "required": true
+                },
+                {
+                    "name": "customDataImportUids",
+                    "type": "List",
+                    "structure": {
+                        "name": "customDataImportUid",
+                        "type": "String",
+                        "info": "Single customDataImportUids"
+                    },
+                    "info": "Custom data import Ids",
+                    "required": true
                 }
             ],
             "vendorRequest": {
@@ -5733,7 +5744,9 @@
                 "requestParameters": [
                     {
                         "type": "query",
-                        "parameters": []
+                        "parameters": [
+                            "customDataImportUids"
+                        ]
                     }
                 ],
                 "headers": {

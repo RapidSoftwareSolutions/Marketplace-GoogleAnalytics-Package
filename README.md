@@ -836,6 +836,7 @@ Delete data associated with a previous upload.
 | accountId         | String| Account id
 | webPropertyId     | String| Web property ID
 | customDataSourceId| String| Custom data source Id
+|customDataImportUids| List  | Custom data import Ids
 
 ## GoogleAnalytics.getUpload
 Gets data associated with a previous upload.

@@ -4,7 +4,7 @@ $app->post('/api/GoogleAnalytics/deleteUploadData', function ($request, $respons
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','accountId','webPropertyId','customDataSourceId']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','accountId','webPropertyId','customDataSourceId', 'customDataImportUids']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,14 +12,13 @@ $app->post('/api/GoogleAnalytics/deleteUploadData', function ($request, $respons
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','customDataSourceId'=>'customDataSourceId'];
+    $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','customDataSourceId'=>'customDataSourceId', 'customDataImportUids' => 'customDataImportUids'];
     $optionalParams = [];
     $bodyParams = [
-       'query' => ['']
+       'query' => ['customDataImportUids']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
-
     
 
     $client = $this->httpClient;
