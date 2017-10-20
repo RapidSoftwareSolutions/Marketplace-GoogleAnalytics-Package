@@ -10,7 +10,7 @@ $app->post('/api/GoogleAnalytics/addUpload', function ($request, $response) {
         $post_data = $validateRes;
     }
     //forming request to vendor API
-    $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$post_data['args']['accountId']}/webproperties/{$post_data['args']['webPropertyId']}/customDataSources/{$post_data['args']['customDataSourceId']}/uploads";
+    $query_str = "https://www.googleapis.com/upload/analytics/v3/management/accounts/{$post_data['args']['accountId']}/webproperties/{$post_data['args']['webPropertyId']}/customDataSources/{$post_data['args']['customDataSourceId']}/uploads";
     $file[] = [
         'name'     => 'file',
         'contents' => fopen($post_data['args']['file'], 'r')
@@ -22,6 +22,7 @@ $app->post('/api/GoogleAnalytics/addUpload', function ($request, $response) {
 
     //requesting remote API
     $client = new GuzzleHttp\Client();
+
 
     try {
 
