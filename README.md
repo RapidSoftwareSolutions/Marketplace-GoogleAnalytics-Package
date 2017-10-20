@@ -2,7 +2,7 @@
 
 # GoogleAnalytics Package
 Programmatically create, access and manage Google Analytics entities such as accounts, properties, views, etc. Manage user permissions and import data.
-* Domain: [GoogleAnalytics](https://analytics.google.com)
+* Domain: [GoogleAnalytics](https://www.analytics.google.com/)
 * Credentials: apiKey, apiSecret
 
 ## How to get credentials: 
@@ -32,7 +32,6 @@ Exchange code for access token.
 | clientSecret| credentials| The client secret that you obtain from the API Console, as described in Obtain OAuth 2.0 credentials.
 | code        | String     | The authorization code that is returned from the initial request.
 | redirectUri | String     | The URI that you specify in the API Console, as described in Set a redirect URI.
-| grantType   | String     | This field must contain a value of authorization_code, as defined in the OAuth 2.0 specification.
 
 ## GoogleAnalytics.getAnalytics
 Returns Analytics data for a view (profile).
@@ -743,7 +742,7 @@ Lists remarketing audiences to which the user has access.
 | accessToken  | String| OAuth 2.0 token for the current user.
 | accountId    | String| Account id
 | webPropertyId| String| Web property ID
-| type         | False | Audience type
+| type         | String| Audience type
 | maxResults   | Number| The maximum number of entries to include in this feed.
 | startIndex   | Number| An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 | fields       | List  | Selector specifying which fields to include in a partial response.

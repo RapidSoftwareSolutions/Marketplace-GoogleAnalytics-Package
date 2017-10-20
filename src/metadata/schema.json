@@ -18,18 +18,20 @@
         ]
     },
     "steps": [
-        "Go to Google Developers Console https://console.developers.google.com/",
+        "Go to Google Developers Console https:\/\/console.developers.google.com\/",
         "Select a project, or create a new one.",
         "Press Continue to activate API key.",
         "In the sidebar on the left, select Credentials",
         "If your project has no API key for the server, create it now - Add credentials > API key > Server key",
-        "Direct user to https://accounts.google.com/o/oauth2/v2/auth?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPES",
+        "Direct user to https:\/\/accounts.google.com\/o\/oauth2\/v2\/auth?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPES",
         "After receiving code from the user, please use getAccesToken block"
     ],
-    "blocks": [{
+    "blocks": [
+        {
             "name": "getAccessToken",
             "description": "Exchange code for access token.",
-            "args": [{
+            "args": [
+                {
                     "name": "clientId",
                     "type": "credentials",
                     "info": "The client ID that you obtain from the API Console, as described in Obtain OAuth 2.0 credentials.",
@@ -61,32 +63,25 @@
                     "vendorSchema": {
                         "name": "redirect_uri"
                     }
-                },
-                {
-                    "name": "grantType",
-                    "type": "String",
-                    "info": "This field must contain a value of authorization_code, as defined in the OAuth 2.0 specification.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "grant_type"
-                    }
                 }
             ],
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/oauth2\/v4\/token",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "form_params",
-                    "parameters": [
-                        "code",
-                        "client_id",
-                        "client_secret",
-                        "redirect_uri",
-                        "grant_type"
-                    ]
-                }]
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "code",
+                            "client_id",
+                            "client_secret",
+                            "redirect_uri"
+                        ]
+                    }
+                ]
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -99,7 +94,8 @@
         {
             "name": "getAnalytics",
             "description": "Returns Analytics data for a view (profile).",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -268,29 +264,32 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/data\/ga",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "ids",
-                        "start-date",
-                        "end-date",
-                        "metrics",
-                        "dimensions",
-                        "filters",
-                        "include-empty-rows",
-                        "max-results",
-                        "samplingLevel",
-                        "segment",
-                        "sort",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "ids",
+                            "start-date",
+                            "end-date",
+                            "metrics",
+                            "dimensions",
+                            "filters",
+                            "include-empty-rows",
+                            "max-results",
+                            "samplingLevel",
+                            "segment",
+                            "sort",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -303,7 +302,8 @@
         {
             "name": "getMultiChannelAnalytics",
             "description": "Returns Analytics Multi-Channel Funnels data for a view",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -472,29 +472,32 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/data\/mcf",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "ids",
-                        "start-date",
-                        "end-date",
-                        "metrics",
-                        "dimensions",
-                        "filters",
-                        "include-empty-rows",
-                        "max-results",
-                        "samplingLevel",
-                        "segment",
-                        "sort",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "ids",
+                            "start-date",
+                            "end-date",
+                            "metrics",
+                            "dimensions",
+                            "filters",
+                            "include-empty-rows",
+                            "max-results",
+                            "samplingLevel",
+                            "segment",
+                            "sort",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -507,7 +510,8 @@
         {
             "name": "getRealtimeAnalytics",
             "description": "Returns real time data for a view (profile)",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -658,27 +662,30 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/data\/realtime",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "ids",
-                        "metrics",
-                        "dimensions",
-                        "filters",
-                        "include-empty-rows",
-                        "max-results",
-                        "samplingLevel",
-                        "segment",
-                        "sort",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "ids",
+                            "metrics",
+                            "dimensions",
+                            "filters",
+                            "include-empty-rows",
+                            "max-results",
+                            "samplingLevel",
+                            "segment",
+                            "sort",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -691,7 +698,8 @@
         {
             "name": "listAccountSummaries",
             "description": "Returns real time data for a view (profile)",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -743,19 +751,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accountSummaries",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -768,7 +779,8 @@
         {
             "name": "deleteUserFromAccount",
             "description": "Removes a user from the given account.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -790,15 +802,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/entityUserLinks\/{$data['linkId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -811,7 +826,8 @@
         {
             "name": "addUserToAccountById",
             "description": "Adds a user to the given account.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -869,27 +885,32 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/entityUserLinks",
                 "method": "post",
-                "vendorFieldsStructure": {
-                    "permissions": {
-                        "local": "{localPermissions}"
-                    },
-                    "userRef": {
-                        "id": "{userId}"
+                "vendorFieldsStructure": [
+                    {
+                        "permissions": {
+                            "local": "{localPermissions}"
+                        },
+                        "userRef": {
+                            "id": "{userId}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "permissions",
-                        "userRef"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "permissions",
+                            "userRef"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -902,7 +923,8 @@
         {
             "name": "addUserToAccountByEmail",
             "description": "Adds a user to the given account.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -960,27 +982,32 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/entityUserLinks",
                 "method": "post",
-                "vendorFieldsStructure": {
-                    "permissions": {
-                        "local": "{localPermissions}"
-                    },
-                    "userRef": {
-                        "email": "{userEmail}"
+                "vendorFieldsStructure": [
+                    {
+                        "permissions": {
+                            "local": "{localPermissions}"
+                        },
+                        "userRef": {
+                            "email": "{userEmail}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "permissions",
-                        "userRef"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "permissions",
+                            "userRef"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -993,7 +1020,8 @@
         {
             "name": "listAccountUsers",
             "description": "Lists account-user links for a given account.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1027,18 +1055,21 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/entityUserLinks\/",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1051,7 +1082,8 @@
         {
             "name": "updateUserAccount",
             "description": "Updates permissions for an existing user on the given account.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1115,24 +1147,29 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/entityUserLinks\/{$data['linkId']}",
                 "method": "put",
-                "vendorFieldsStructure": {
-                    "permissions": {
-                        "local": "{localPermissions}"
+                "vendorFieldsStructure": [
+                    {
+                        "permissions": {
+                            "local": "{localPermissions}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "permissions",
-                        "userRef"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "permissions",
+                            "userRef"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1145,7 +1182,8 @@
         {
             "name": "listAccounts",
             "description": "Lists all accounts to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1187,19 +1225,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1212,7 +1253,8 @@
         {
             "name": "deleteAdwordsPropertyLink",
             "description": "Deletes a web property-AdWords link.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1240,15 +1282,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityAdWordsLinks\/{$data['webPropertyAdWordsLinkId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1261,7 +1306,8 @@
         {
             "name": "getAdwordsPropertyLink",
             "description": "Retrieves a web property-AdWords link.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1303,17 +1349,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityAdWordsLinks\/{$data['webPropertyAdWordsLinkId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1326,7 +1375,8 @@
         {
             "name": "addAdwordsPropertyLink",
             "description": "Adds a web property-AdWords link.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1376,19 +1426,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityAdWordsLinks",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "adWordsAccounts",
-                        "name",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "adWordsAccounts",
+                            "name",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1401,7 +1454,8 @@
         {
             "name": "listAdwordsPropertyLinks",
             "description": "Lists webProperty-AdWords links for a given web property. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1455,19 +1509,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityAdWordsLinks",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1480,7 +1537,8 @@
         {
             "name": "updateAdwordsPropertyLink",
             "description": "Updates a web property-AdWords link.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1536,19 +1594,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityAdWordsLinks\/{$data['webPropertyAdWordsLinkId']}",
                 "method": "patch",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "adWordsAccounts",
-                        "name",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "adWordsAccounts",
+                            "name",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1561,7 +1622,8 @@
         {
             "name": "listCustomDataSources",
             "description": "List custom data sources to which the user has access",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1615,19 +1677,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customDataSources",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1640,7 +1705,8 @@
         {
             "name": "getCustomDimension",
             "description": "Get a custom dimension to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1682,17 +1748,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customDimensions\/{$data['customDimensionId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1705,7 +1774,8 @@
         {
             "name": "addCustomDimension",
             "description": "Create a new custom dimension.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1766,20 +1836,23 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customDimensions",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "name",
-                        "scope",
-                        "active",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "name",
+                            "scope",
+                            "active",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1792,7 +1865,8 @@
         {
             "name": "listCustomDimensions",
             "description": "Lists custom dimensions to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1846,19 +1920,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customDimensions",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1871,7 +1948,8 @@
         {
             "name": "updateCustomDimension",
             "description": "Update existing custom dimension.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -1948,21 +2026,24 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customDimensions\/{$data['customDimensionId']}",
                 "method": "patch",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "name",
-                        "scope",
-                        "active",
-                        "fields",
-                        "ignoreCustomDataSourceLinks"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "name",
+                            "scope",
+                            "active",
+                            "fields",
+                            "ignoreCustomDataSourceLinks"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -1975,7 +2056,8 @@
         {
             "name": "getCustomMetric",
             "description": "Get a custom metric to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2017,17 +2099,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customMetrics\/{$data['customMetricId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2040,7 +2125,8 @@
         {
             "name": "addCustomMetric",
             "description": "Create a new custom metric.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2123,23 +2209,26 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customMetrics",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "name",
-                        "scope",
-                        "active",
-                        "fields",
-                        "type",
-                        "max-value",
-                        "min-value"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "name",
+                            "scope",
+                            "active",
+                            "fields",
+                            "type",
+                            "max-value",
+                            "min-value"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2152,7 +2241,8 @@
         {
             "name": "listCustomMetrics",
             "description": "Lists custom metics to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2206,19 +2296,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customMetrics",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2231,7 +2324,8 @@
         {
             "name": "updateCustomMetric",
             "description": "Update existing custom metric.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2320,23 +2414,26 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customMetrics\/{$data['customMetricId']}",
                 "method": "patch",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "name",
-                        "scope",
-                        "active",
-                        "fields",
-                        "type",
-                        "max-value",
-                        "min-value"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "name",
+                            "scope",
+                            "active",
+                            "fields",
+                            "type",
+                            "max-value",
+                            "min-value"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2349,7 +2446,8 @@
         {
             "name": "deleteExperiment",
             "description": "Delete an experiment.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2383,15 +2481,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/experiments\/{$data['experimentId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2404,7 +2505,8 @@
         {
             "name": "getExperiment",
             "description": "Get an experiment.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2452,17 +2554,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/experiments\/{$data['experimentId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2475,7 +2580,8 @@
         {
             "name": "addExperiment",
             "description": "Add an experiment.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2634,30 +2740,33 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/experiments",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "winnerConfidenceLevel",
-                        "trafficCoverage",
-                        "servingFramework",
-                        "rewriteVariationUrlsAsOriginal",
-                        "optimizationType",
-                        "fields",
-                        "name",
-                        "status",
-                        "variations",
-                        "description",
-                        "editableInGaUi",
-                        "equalWeighting",
-                        "minimumExperimentLengthInDays",
-                        "objectiveMetric"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "winnerConfidenceLevel",
+                            "trafficCoverage",
+                            "servingFramework",
+                            "rewriteVariationUrlsAsOriginal",
+                            "optimizationType",
+                            "fields",
+                            "name",
+                            "status",
+                            "variations",
+                            "description",
+                            "editableInGaUi",
+                            "equalWeighting",
+                            "minimumExperimentLengthInDays",
+                            "objectiveMetric"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2670,7 +2779,8 @@
         {
             "name": "listExperiments",
             "description": "Lists experiments to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2730,19 +2840,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/experiments",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2755,7 +2868,8 @@
         {
             "name": "updateExperiment",
             "description": "Update an experiment.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2920,30 +3034,33 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/experiments\/{$data['experimentId']}",
                 "method": "patch",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "winnerConfidenceLevel",
-                        "trafficCoverage",
-                        "servingFramework",
-                        "rewriteVariationUrlsAsOriginal",
-                        "optimizationType",
-                        "fields",
-                        "name",
-                        "status",
-                        "variations",
-                        "description",
-                        "editableInGaUi",
-                        "equalWeighting",
-                        "minimumExperimentLengthInDays",
-                        "objectiveMetric"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "winnerConfidenceLevel",
+                            "trafficCoverage",
+                            "servingFramework",
+                            "rewriteVariationUrlsAsOriginal",
+                            "optimizationType",
+                            "fields",
+                            "name",
+                            "status",
+                            "variations",
+                            "description",
+                            "editableInGaUi",
+                            "equalWeighting",
+                            "minimumExperimentLengthInDays",
+                            "objectiveMetric"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2956,7 +3073,8 @@
         {
             "name": "deleteFilter",
             "description": "Delete a filter. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -2978,15 +3096,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters\/{$data['filterId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -2999,7 +3120,8 @@
         {
             "name": "getFilter",
             "description": "Get a filter. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3035,17 +3157,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters\/{$data['filterId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3058,7 +3183,8 @@
         {
             "name": "addAdvancedFilter",
             "description": "Add advanced filter. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3097,23 +3223,28 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "vendorFieldsStructure": {
-                        "type": "ADVANCED"
-                    },
-                    "parameters": [
-                        "fields",
-                        "name",
-                        "type",
-                        "advancedDetails"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "vendorFieldsStructure": [
+                            {
+                                "type": "ADVANCED"
+                            }
+                        ],
+                        "parameters": [
+                            "fields",
+                            "name",
+                            "type",
+                            "advancedDetails"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3126,7 +3257,8 @@
         {
             "name": "addExcludeFilter",
             "description": "Add exclude filter. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3165,23 +3297,28 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "vendorFieldsStructure": {
-                        "type": "EXCLUDE"
-                    },
-                    "parameters": [
-                        "fields",
-                        "name",
-                        "type",
-                        "excludeDetails"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "vendorFieldsStructure": [
+                            {
+                                "type": "EXCLUDE"
+                            }
+                        ],
+                        "parameters": [
+                            "fields",
+                            "name",
+                            "type",
+                            "excludeDetails"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3194,7 +3331,8 @@
         {
             "name": "addLowercaseFilter",
             "description": "Add lowercase filter. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3233,23 +3371,28 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "vendorFieldsStructure": {
-                        "type": "LOWERCASE"
-                    },
-                    "parameters": [
-                        "fields",
-                        "name",
-                        "type",
-                        "lowercaseDetails"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "vendorFieldsStructure": [
+                            {
+                                "type": "LOWERCASE"
+                            }
+                        ],
+                        "parameters": [
+                            "fields",
+                            "name",
+                            "type",
+                            "lowercaseDetails"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3262,7 +3405,8 @@
         {
             "name": "addUppercase",
             "description": "Add uppercase filter. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3301,23 +3445,28 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "vendorFieldsStructure": {
-                        "type": "UPPERCASE"
-                    },
-                    "parameters": [
-                        "fields",
-                        "name",
-                        "type",
-                        "uppercaseDetails"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "vendorFieldsStructure": [
+                            {
+                                "type": "UPPERCASE"
+                            }
+                        ],
+                        "parameters": [
+                            "fields",
+                            "name",
+                            "type",
+                            "uppercaseDetails"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3330,7 +3479,8 @@
         {
             "name": "addSearchAndReplaceFilter",
             "description": "Add search and replace filter. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3369,23 +3519,28 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "vendorFieldsStructure": {
-                        "type": "SEARCH_AND_REPLACE"
-                    },
-                    "parameters": [
-                        "fields",
-                        "name",
-                        "type",
-                        "searchAndReplaceDetails"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "vendorFieldsStructure": [
+                            {
+                                "type": "SEARCH_AND_REPLACE"
+                            }
+                        ],
+                        "parameters": [
+                            "fields",
+                            "name",
+                            "type",
+                            "searchAndReplaceDetails"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3398,7 +3553,8 @@
         {
             "name": "addIncludeFilter",
             "description": "Add include filter. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3437,23 +3593,28 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "vendorFieldsStructure": {
-                        "type": "INCLUDE"
-                    },
-                    "parameters": [
-                        "fields",
-                        "name",
-                        "type",
-                        "includeDetails"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "vendorFieldsStructure": [
+                            {
+                                "type": "INCLUDE"
+                            }
+                        ],
+                        "parameters": [
+                            "fields",
+                            "name",
+                            "type",
+                            "includeDetails"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3466,7 +3627,8 @@
         {
             "name": "updateFilter",
             "description": "Update a filter. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3555,25 +3717,28 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters\/{$data['filterId']}",
                 "method": "patch",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "name",
-                        "type",
-                        "advancedDetails",
-                        "excludeDetails",
-                        "includeDetails",
-                        "lowercaseDetails",
-                        "searchAndReplaceDetails",
-                        "uppercaseDetails"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "name",
+                            "type",
+                            "advancedDetails",
+                            "excludeDetails",
+                            "includeDetails",
+                            "lowercaseDetails",
+                            "searchAndReplaceDetails",
+                            "uppercaseDetails"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3586,7 +3751,8 @@
         {
             "name": "listFilters",
             "description": "Lists filters to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3634,19 +3800,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3659,7 +3828,8 @@
         {
             "name": "getGoal",
             "description": "Get a goal.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3707,17 +3877,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/goals\/{$data['goalId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3730,7 +3903,8 @@
         {
             "name": "listGoals",
             "description": "Lists goals to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3790,19 +3964,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/goals",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3815,7 +3992,8 @@
         {
             "name": "deleteProfileFilterLink",
             "description": "Delete a profile filter link",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3849,15 +4027,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/profileFilterLinks\/{$data['linkId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3870,7 +4051,8 @@
         {
             "name": "getProfileFilterLink",
             "description": "Get a profile filter link",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3918,17 +4100,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/profileFilterLinks\/{$data['linkId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -3941,7 +4126,8 @@
         {
             "name": "addProfileFilterLink",
             "description": "Add a profile filter link",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -3992,24 +4178,29 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/profileFilterLinks",
                 "method": "post",
-                "vendorFieldsStructure": {
-                    "filterRef": {
-                        "idlocal": "{filterRefId}"
+                "vendorFieldsStructure": [
+                    {
+                        "filterRef": {
+                            "idlocal": "{filterRefId}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "filterRef",
-                        "rank"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "filterRef",
+                            "rank"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4022,7 +4213,8 @@
         {
             "name": "listProfileLinks",
             "description": "Lists all profile filter links for a profile. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4082,19 +4274,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/profileFilterLinks",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4107,7 +4302,8 @@
         {
             "name": "updateProfileFilterLink",
             "description": "Update a profile filter link",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4164,24 +4360,29 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/profileFilterLinks\/{$data['linkId']}",
                 "method": "patch",
-                "vendorFieldsStructure": {
-                    "filterRef": {
-                        "idlocal": "{filterRefId}"
+                "vendorFieldsStructure": [
+                    {
+                        "filterRef": {
+                            "idlocal": "{filterRefId}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "filterRef",
-                        "rank"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "filterRef",
+                            "rank"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4194,7 +4395,8 @@
         {
             "name": "deleteProfileUserLink",
             "description": "Removes a user from the given view (profile)",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4228,15 +4430,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/entityUserLinks\/{$data['linkId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4249,7 +4454,8 @@
         {
             "name": "addUserToProfileById",
             "description": "Adds a user to the given profile by Id.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4311,27 +4517,32 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/entityUserLinks\/",
                 "method": "post",
-                "vendorFieldsStructure": {
-                    "permissions": {
-                        "local": "{localPermissions}"
-                    },
-                    "userRef": {
-                        "id": "{userId}"
+                "vendorFieldsStructure": [
+                    {
+                        "permissions": {
+                            "local": "{localPermissions}"
+                        },
+                        "userRef": {
+                            "id": "{userId}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "permissions",
-                        "userRef"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "permissions",
+                            "userRef"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4344,7 +4555,8 @@
         {
             "name": "addUserToProfileByEmail",
             "description": "Adds a user to the given profile by email.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4406,27 +4618,32 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/entityUserLinks\/",
                 "method": "post",
-                "vendorFieldsStructure": {
-                    "permissions": {
-                        "local": "{localPermissions}"
-                    },
-                    "userRef": {
-                        "email": "{userEmail}"
+                "vendorFieldsStructure": [
+                    {
+                        "permissions": {
+                            "local": "{localPermissions}"
+                        },
+                        "userRef": {
+                            "email": "{userEmail}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "permissions",
-                        "userRef"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "permissions",
+                            "userRef"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4439,7 +4656,8 @@
         {
             "name": "listProfileUsers",
             "description": "Lists profile-user links for a given view (profile). ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4499,19 +4717,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/entityUserLinks",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4524,7 +4745,8 @@
         {
             "name": "updateProfileUser",
             "description": "Updates permissions for an existing user on the given view (profile).",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4600,24 +4822,29 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/entityUserLinks\/{$data['linkId']}",
                 "method": "put",
-                "vendorFieldsStructure": {
-                    "permissions": {
-                        "local": "{localPermissions}"
+                "vendorFieldsStructure": [
+                    {
+                        "permissions": {
+                            "local": "{localPermissions}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "permissions",
-                        "userRef"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "permissions",
+                            "userRef"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4630,7 +4857,8 @@
         {
             "name": "deleteRemarketingAudience",
             "description": "Delete a remarketing audience. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4658,15 +4886,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/remarketingAudiences\/{$data['remarketingAudienceId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4679,7 +4910,8 @@
         {
             "name": "getRemarketingAudience",
             "description": "Get a remarketing audience. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4721,17 +4953,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/remarketingAudiences\/{$data['remarketingAudienceId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4744,7 +4979,8 @@
         {
             "name": "addRemarketingAudience",
             "description": "Add a remarketing audience. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4816,22 +5052,25 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/remarketingAudiences",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "audienceDefinition",
-                        "audienceType",
-                        "linkedAdAccounts",
-                        "name",
-                        "stateBasedAudienceDefinition"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "audienceDefinition",
+                            "audienceType",
+                            "linkedAdAccounts",
+                            "name",
+                            "stateBasedAudienceDefinition"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4844,7 +5083,8 @@
         {
             "name": "listRemarketingAudience",
             "description": "Lists remarketing audiences to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -4864,7 +5104,7 @@
                 },
                 {
                     "name": "type",
-                    "type": "False",
+                    "type": "String",
                     "info": "Audience type",
                     "required": false
                 },
@@ -4904,20 +5144,23 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/remarketingAudiences",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields",
-                        "type"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields",
+                            "type"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -4930,7 +5173,8 @@
         {
             "name": "updateRemarketingAudience",
             "description": "Update a remarketing audience. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5008,22 +5252,25 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/remarketingAudiences\/{$data['remarketingAudienceId']}",
                 "method": "patch",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "audienceDefinition",
-                        "audienceType",
-                        "linkedAdAccounts",
-                        "name",
-                        "stateBasedAudienceDefinition"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "audienceDefinition",
+                            "audienceType",
+                            "linkedAdAccounts",
+                            "name",
+                            "stateBasedAudienceDefinition"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5036,7 +5283,8 @@
         {
             "name": "listSegments",
             "description": "Lists segments to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5078,19 +5326,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/segments",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5103,7 +5354,8 @@
         {
             "name": "deleteUnsampledReport",
             "description": "Deletes an unsampled report.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5137,15 +5389,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/unsampledReports\/{$data['unsampledReportId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5158,7 +5413,8 @@
         {
             "name": "getUnsampledReport",
             "description": "Retrieves an unsampled report.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5206,17 +5462,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/unsampledReports\/{$data['unsampledReportId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5229,7 +5488,8 @@
         {
             "name": "addUnsampledReport",
             "description": "Adds an unsampled report.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5319,24 +5579,27 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/unsampledReports",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "title",
-                        "metrics",
-                        "start-date",
-                        "end-date",
-                        "filters",
-                        "dimensions",
-                        "segment"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "title",
+                            "metrics",
+                            "start-date",
+                            "end-date",
+                            "filters",
+                            "dimensions",
+                            "segment"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5349,7 +5612,8 @@
         {
             "name": "listUnsampledReports",
             "description": "Lists unsampled reports to which the user has access. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5409,19 +5673,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}\/unsampledReports",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5434,7 +5701,8 @@
         {
             "name": "deleteUploadData",
             "description": "Delete data associated with a previous upload.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5462,15 +5730,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customDataSources\/{$data['customDataSourceId']}\/deleteUploadData",
                 "method": "post",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5483,7 +5754,8 @@
         {
             "name": "getUpload",
             "description": "Gets data associated with a previous upload.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5531,17 +5803,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customDataSources\/{$data['customDataSourceId']}\/upload\/{$data['uploadId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5554,7 +5829,8 @@
         {
             "name": "listUpload",
             "description": "List uploads to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5614,19 +5890,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customDataSources\/{$data['customDataSourceId']}\/uploads",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields",
-                        "max-results",
-                        "start-index"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields",
+                            "max-results",
+                            "start-index"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5639,7 +5918,8 @@
         {
             "name": "addUpload",
             "description": "Upload data for a custom data source.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5684,22 +5964,27 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/customDataSources\/{$data['customDataSourceId']}\/uploads",
                 "method": "post",
-                "vendorFieldsStructure": {
-                    "uploadType": "media"
-                },
-                "requestParameters": [{
-                    "type": "multipart",
-                    "parameters": [
-                        "fields",
-                        "file",
-                        "uploadType"
-                    ]
-                }],
+                "vendorFieldsStructure": [
+                    {
+                        "uploadType": "media"
+                    }
+                ],
+                "requestParameters": [
+                    {
+                        "type": "multipart",
+                        "parameters": [
+                            "fields",
+                            "file",
+                            "uploadType"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5712,7 +5997,8 @@
         {
             "name": "deleteProfile",
             "description": "Deletes a view (profile).",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5740,15 +6026,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5761,7 +6050,8 @@
         {
             "name": "getProfile",
             "description": "Retrieves a view (profile).",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5800,17 +6090,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles\/{$data['profileId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5823,7 +6116,8 @@
         {
             "name": "listProfiles",
             "description": "Lists views (profiles) to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5874,19 +6168,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/profiles",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields",
-                        "max-results",
-                        "start-index"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields",
+                            "max-results",
+                            "start-index"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5899,7 +6196,8 @@
         {
             "name": "getWebProperty",
             "description": "Gets a property to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -5932,17 +6230,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -5955,7 +6256,8 @@
         {
             "name": "listProperties",
             "description": "Lists properties to which the user has access.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -6000,19 +6302,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "fields",
-                        "max-results",
-                        "start-index"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields",
+                            "max-results",
+                            "start-index"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -6025,7 +6330,8 @@
         {
             "name": "deleteWebPropertyUser",
             "description": "Removes a user from the given web property. ",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -6059,15 +6365,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityUserLinks\/{$data['linkId']}",
                 "method": "delete",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": []
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": []
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -6080,7 +6389,8 @@
         {
             "name": "addUserToWebPropertyById",
             "description": "Adds a user to the given web property by Id.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -6136,27 +6446,32 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityUserLinks\/",
                 "method": "post",
-                "vendorFieldsStructure": {
-                    "permissions": {
-                        "local": "{localPermissions}"
-                    },
-                    "userRef": {
-                        "id": "{userId}"
+                "vendorFieldsStructure": [
+                    {
+                        "permissions": {
+                            "local": "{localPermissions}"
+                        },
+                        "userRef": {
+                            "id": "{userId}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "permissions",
-                        "userRef"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "permissions",
+                            "userRef"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -6169,7 +6484,8 @@
         {
             "name": "addUserToWebPropertyByEmail",
             "description": "Adds a user to the given web property by email.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -6225,27 +6541,32 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityUserLinks\/",
                 "method": "post",
-                "vendorFieldsStructure": {
-                    "permissions": {
-                        "local": "{localPermissions}"
-                    },
-                    "userRef": {
-                        "email": "{userEmail}"
+                "vendorFieldsStructure": [
+                    {
+                        "permissions": {
+                            "local": "{localPermissions}"
+                        },
+                        "userRef": {
+                            "email": "{userEmail}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "permissions",
-                        "userRef"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "permissions",
+                            "userRef"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -6258,7 +6579,8 @@
         {
             "name": "listWebPropertyUsers",
             "description": "Lists webProperty-user links for a given web property.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -6312,19 +6634,22 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityUserLinks",
                 "method": "get",
-                "requestParameters": [{
-                    "type": "query",
-                    "parameters": [
-                        "max-results",
-                        "start-index",
-                        "fields"
-                    ]
-                }],
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "max-results",
+                            "start-index",
+                            "fields"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },
@@ -6337,7 +6662,8 @@
         {
             "name": "updateWebPropertyUser",
             "description": "Updates permissions for an existing user on the given web property.",
-            "args": [{
+            "args": [
+                {
                     "name": "accessToken",
                     "type": "String",
                     "info": "OAuth 2.0 token for the current user.",
@@ -6399,24 +6725,29 @@
             "vendorRequest": {
                 "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/webproperties\/{$data['webPropertyId']}\/entityUserLinks\/{$data['linkId']}",
                 "method": "put",
-                "vendorFieldsStructure": {
-                    "permissions": {
-                        "local": "{localPermissions}"
+                "vendorFieldsStructure": [
+                    {
+                        "permissions": {
+                            "local": "{localPermissions}"
+                        }
                     }
-                },
-                "requestParameters": [{
-                    "type": "json",
-                    "parameters": [
-                        "fields",
-                        "permissions",
-                        "userRef"
-                    ]
-                }],
+                ],
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "permissions",
+                            "userRef"
+                        ]
+                    }
+                ],
                 "headers": {
                     "Authorization": "Bearer {$data['accessToken']}"
                 }
             },
-            "callbacks": [{
+            "callbacks": [
+                {
                     "name": "error",
                     "info": "Error"
                 },

@@ -25,7 +25,7 @@ $app->post('/api/GoogleAnalytics/updateUserAccount', function ($request, $respon
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/entityUserLinks/{$data['linkId']}";
 
-    
+    $data['permissions']['local'] = $data['localPermissions'];
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];

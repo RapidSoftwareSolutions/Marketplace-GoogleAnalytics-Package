@@ -25,7 +25,8 @@ $app->post('/api/GoogleAnalytics/addUppercase', function ($request, $response) {
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/filters";
 
-    
+
+    $data['type'] = "UPPERCASE";
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];

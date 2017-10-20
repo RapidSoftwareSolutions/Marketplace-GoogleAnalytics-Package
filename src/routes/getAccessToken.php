@@ -4,7 +4,7 @@ $app->post('/api/GoogleAnalytics/getAccessToken', function ($request, $response)
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['clientId','clientSecret','code','redirectUri','grantType']);
+    $validateRes = $checkRequest->validate($request, ['clientId','clientSecret','code','redirectUri']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -25,7 +25,7 @@ $app->post('/api/GoogleAnalytics/getAccessToken', function ($request, $response)
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/oauth2/v4/token";
 
-    
+    $data['grant_type'] = 'authorization_code';
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];

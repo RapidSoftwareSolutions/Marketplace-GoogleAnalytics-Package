@@ -1,82 +1,71 @@
 <?php
-
 $app->post('/api/GoogleAnalytics/addUpload', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
     $validateRes = $checkRequest->validate($request, ['accessToken','accountId','webPropertyId','customDataSourceId','file']);
-
-    if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
+    if (!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback'] == 'error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
     } else {
         $post_data = $validateRes;
     }
-
-    $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','customDataSourceId'=>'customDataSourceId','file'=>'file'];
-    $optionalParams = ['fields'=>'fields'];
-    $bodyParams = [
-       'multipart' => ['fields','file','uploadType']
+    //forming request to vendor API
+    $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$post_data['args']['accountId']}/webproperties/{$post_data['args']['webPropertyId']}/customDataSources/{$post_data['args']['customDataSourceId']}/uploads";
+    $file[] = [
+        'name'     => 'file',
+        'contents' => fopen($post_data['args']['file'], 'r')
+    ];
+    $file[] = [
+        'name'     => 'uploadType',
+        'contents' => 'media'
     ];
 
-    $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
-
-    
-
-    $client = $this->httpClient;
-    $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/customDataSources/{$data['customDataSourceId']}/uploads";
-
-    
-
-    $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];
-     
+    //requesting remote API
+    $client = new GuzzleHttp\Client();
 
     try {
-        $resp = $client->post($query_str, $requestParams);
-        $responseBody = $resp->getBody()->getContents();
 
-        if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
+        $resp = $client->request('POST', $query_str, [
+            'headers'=>[
+                "Authorization" => "Bearer ". $post_data['args']['accessToken'],
+                "Content-Type" => "application/octet-stream"
+            ],
+            'multipart' => $file
+        ]);
+
+        $responseBody = $resp->getBody()->getContents();
+        $rawBody = json_decode($resp->getBody());
+
+        $all_data[] = $rawBody;
+        if ($response->getStatusCode() == '200') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
-            if(empty($result['contextWrites']['to'])) {
-                $result['contextWrites']['to']['status_msg'] = "Api return no results";
-            }
+            $result['contextWrites']['to'] = is_array($all_data) ? $all_data : json_decode($all_data);
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-            $result['contextWrites']['to']['status_msg'] = json_decode($responseBody);
+            $result['contextWrites']['to']['status_msg'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
         }
 
     } catch (\GuzzleHttp\Exception\ClientException $exception) {
-
-        $responseBody = $exception->getResponse()->getBody()->getContents();
-        if(empty(json_decode($responseBody))) {
-            $out = $responseBody;
-        } else {
-            $out = json_decode($responseBody);
-        }
+        $responseBody = $exception->getResponse()->getReasonPhrase();
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-        $result['contextWrites']['to']['status_msg'] = $out;
+        $result['contextWrites']['to']['status_msg'] = $responseBody;
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {
 
-        $responseBody = $exception->getResponse()->getBody()->getContents();
-        if(empty(json_decode($responseBody))) {
-            $out = $responseBody;
-        } else {
-            $out = json_decode($responseBody);
-        }
+        $responseBody = $exception->getResponse()->getBody(true);
         $result['callback'] = 'error';
-        $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-        $result['contextWrites']['to']['status_msg'] = $out;
+        $result['contextWrites']['to'] = json_decode($responseBody);
 
-    } catch (GuzzleHttp\Exception\ConnectException $exception) {
+    } catch (GuzzleHttp\Exception\BadResponseException $exception) {
+
+        $responseBody = $exception->getResponse()->getBody(true);
         $result['callback'] = 'error';
-        $result['contextWrites']['to']['status_code'] = 'INTERNAL_PACKAGE_ERROR';
-        $result['contextWrites']['to']['status_msg'] = 'Something went wrong inside the package.';
+        $result['contextWrites']['to'] = json_decode($responseBody);
 
     }
+
 
     return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
 

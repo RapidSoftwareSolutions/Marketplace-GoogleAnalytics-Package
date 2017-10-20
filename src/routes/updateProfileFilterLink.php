@@ -25,7 +25,7 @@ $app->post('/api/GoogleAnalytics/updateProfileFilterLink', function ($request, $
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/profiles/{$data['profileId']}/profileFilterLinks/{$data['linkId']}";
 
-    
+    $data['filterRef']['idlocal'] = $data['filterRefId'];
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];

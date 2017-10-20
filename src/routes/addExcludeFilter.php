@@ -26,7 +26,7 @@ $app->post('/api/GoogleAnalytics/addExcludeFilter', function ($request, $respons
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/filters";
 
     
-
+$data['type'] = "EXCLUDE";
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];
      

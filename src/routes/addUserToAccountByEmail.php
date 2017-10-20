@@ -25,12 +25,11 @@ $app->post('/api/GoogleAnalytics/addUserToAccountByEmail', function ($request, $
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/entityUserLinks";
 
-    
+    $data['userRef']['email'] = $data['userEmail'];
+$data['permissions']['local'] = $data['localPermissions'];
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];
-     
-
     try {
         $resp = $client->post($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();

@@ -25,7 +25,7 @@ $app->post('/api/GoogleAnalytics/updateWebPropertyUser', function ($request, $re
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/entityUserLinks/{$data['linkId']}";
 
-    
+    $data['permissions']['local'] = $data['localPermissions'];
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];

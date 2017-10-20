@@ -25,7 +25,8 @@ $app->post('/api/GoogleAnalytics/addUserToProfileById', function ($request, $res
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/profiles/{$data['profileId']}/entityUserLinks/";
 
-    
+    $data['userRef']['id'] = $data['userId'];
+$data['permissions']['local'] = $data['localPermissions'];
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];
