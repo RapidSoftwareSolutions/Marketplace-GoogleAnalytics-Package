@@ -4,7 +4,7 @@ $app->post('/api/GoogleAnalytics/addRemarketingAudience', function ($request, $r
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','accountId','webPropertyId','audienceDefinition','name','audienceType','stateBasedAudienceDefinition']);
+    $validateRes = $checkRequest->validate($request, ['linkedAdAccounts','accessToken','accountId','webPropertyId','audienceDefinition','name','audienceType','stateBasedAudienceDefinition', 'linkedViews']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,10 +12,10 @@ $app->post('/api/GoogleAnalytics/addRemarketingAudience', function ($request, $r
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','audienceDefinition'=>'audienceDefinition','name'=>'name','audienceType'=>'audienceType','stateBasedAudienceDefinition'=>'stateBasedAudienceDefinition'];
-    $optionalParams = ['linkedAdAccounts'=>'linkedAdAccounts','fields'=>'fields'];
+    $requiredParams = ['linkedAdAccounts'=>'linkedAdAccounts','accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','audienceDefinition'=>'audienceDefinition','name'=>'name','audienceType'=>'audienceType','stateBasedAudienceDefinition'=>'stateBasedAudienceDefinition', 'linkedViews'=> 'linkedViews'];
+    $optionalParams = ['fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','audienceDefinition','audienceType','linkedAdAccounts','name','stateBasedAudienceDefinition']
+       'json' => ['fields','audienceDefinition','audienceType','linkedAdAccounts','name','stateBasedAudienceDefinition', 'linkedViews']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

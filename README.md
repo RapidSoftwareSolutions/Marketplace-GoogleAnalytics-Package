@@ -731,6 +731,7 @@ Add a remarketing audience.
 | name                        | String| The name of this remarketing audience.
 | audienceType                | Select| The type of this remarketing audience.
 | linkedAdAccounts            | List  | The linked ad accounts associated with this remarketing audience. A remarketing audience can have only one linkedAdAccount currentl
+| linkedViews            | List  | The views (profiles) that this remarketing audience is linked to.
 | stateBasedAudienceDefinition| JSON  | A state based audience definition that will cause a user to be added or removed from an audience.
 | fields                      | List  | Selector specifying which fields to include in a partial response.
 
@@ -760,6 +761,7 @@ Update a remarketing audience.
 | name                        | String| The false of this remarketing audience.
 | audienceType                | Select| The type of this remarketing audience.
 | linkedAdAccounts            | List  | The linked ad accounts associated with this remarketing audience. A remarketing audience can have only one linkedAdAccount currentl
+| linkedViews            | List  | The views (profiles) that this remarketing audience is linked to.
 | stateBasedAudienceDefinition| JSON  | A state based audience definition that will cause a user to be added or removed from an audience.
 | fields                      | List  | Selector specifying which fields to include in a partial response.
 

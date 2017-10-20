@@ -4,7 +4,7 @@ $app->post('/api/GoogleAnalytics/updateRemarketingAudience', function ($request,
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','accountId','webPropertyId','remarketingAudienceId','name','stateBasedAudienceDefinition']);
+    $validateRes = $checkRequest->validate($request, ['linkedAdAccounts','accessToken','accountId','webPropertyId','remarketingAudienceId','name','stateBasedAudienceDefinition', 'linkedViews']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,10 +12,10 @@ $app->post('/api/GoogleAnalytics/updateRemarketingAudience', function ($request,
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','remarketingAudienceId'=>'remarketingAudienceId','name'=>'name','stateBasedAudienceDefinition'=>'stateBasedAudienceDefinition'];
-    $optionalParams = ['audienceDefinition'=>'audienceDefinition','audienceType'=>'audienceType','linkedAdAccounts'=>'linkedAdAccounts','fields'=>'fields'];
+    $requiredParams = ['linkedAdAccounts'=>'linkedAdAccounts','accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','remarketingAudienceId'=>'remarketingAudienceId','name'=>'name','stateBasedAudienceDefinition'=>'stateBasedAudienceDefinition', 'linkedViews'=> 'linkedViews'];
+    $optionalParams = ['audienceType'=>'audienceType','linkedAdAccounts'=>'linkedAdAccounts','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','audienceDefinition','audienceType','linkedAdAccounts','name','stateBasedAudienceDefinition']
+       'json' => ['fields','audienceDefinition','audienceType','linkedAdAccounts','name','stateBasedAudienceDefinition', 'linkedViews']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

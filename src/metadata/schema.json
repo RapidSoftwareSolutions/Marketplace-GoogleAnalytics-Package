@@ -5028,8 +5028,19 @@
                         "type": "String",
                         "info": "Single linkedAdAccount"
                     },
-                    "info": "The linked ad accounts associated with this remarketing audience. A remarketing audience can have only one linkedAdAccount currentl",
-                    "required": false
+                    "info": "The linked ad accounts associated with this remarketing audience. A remarketing audience can have only one linkedAdAccount currently",
+                    "required": true
+                },
+                {
+                    "name": "linkedViews",
+                    "type": "List",
+                    "structure": {
+                        "name": "linkedView",
+                        "type": "String",
+                        "info": "Single linkedView"
+                    },
+                    "info": "The views (profiles) that this remarketing audience is linked to.",
+                    "required": true
                 },
                 {
                     "name": "stateBasedAudienceDefinition",
@@ -5229,7 +5240,18 @@
                         "info": "Single linkedAdAccount"
                     },
                     "info": "The linked ad accounts associated with this remarketing audience. A remarketing audience can have only one linkedAdAccount currentl",
-                    "required": false
+                    "required": true
+                },
+                {
+                    "name": "linkedViews",
+                    "type": "List",
+                    "structure": {
+                        "name": "linkedView",
+                        "type": "String",
+                        "info": "Single linkedView"
+                    },
+                    "info": "The views (profiles) that this remarketing audience is linked to.",
+                    "required": true
                 },
                 {
                     "name": "stateBasedAudienceDefinition",
