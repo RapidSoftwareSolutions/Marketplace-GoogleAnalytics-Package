@@ -13,9 +13,9 @@ $app->post('/api/GoogleAnalytics/updateFilter', function ($request, $response) {
     }
 
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','filterId'=>'filterId'];
-    $optionalParams = ['name'=>'name','type'=>'type','advancedDetails'=>'advancedDetails','excludeDetails'=>'excludeDetails','includeDetails'=>'includeDetails','lowercaseDetails'=>'lowercaseDetails','uppercaseDetails'=>'uppercaseDetails','searchAndReplaceDetails'=>'searchAndReplaceDetails','fields'=>'fields'];
+    $optionalParams = ['name'=>'name','type'=>'type','advancedDetails'=>'advancedDetails','excludeDetails'=>'excludeDetails','includeDetails'=>'includeDetails','lowercaseDetails'=>'lowercaseDetails','uppercaseDetails'=>'uppercaseDetails','searchAndReplaceDetails'=>'searchAndReplaceDetails','fields'=>'fields', 'id'=> 'id'];
     $bodyParams = [
-       'json' => ['fields','name','type','advancedDetails','excludeDetails','includeDetails','lowercaseDetails','searchAndReplaceDetails','uppercaseDetails']
+       'json' => ['fields','name','type','advancedDetails','excludeDetails','includeDetails','lowercaseDetails','searchAndReplaceDetails','uppercaseDetails', 'id']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
