@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/addAdvancedFilter', function ($request, $respon
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','advancedDetails'=>'advancedDetails'];
     $optionalParams = ['name'=>'name','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','name','type','advancedDetails']
+       'json' => ['fields','name','type','advancedDetails'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

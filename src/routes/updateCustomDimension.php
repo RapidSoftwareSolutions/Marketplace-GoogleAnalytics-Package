@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/updateCustomDimension', function ($request, $re
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','customDimensionId'=>'customDimensionId'];
     $optionalParams = ['name'=>'name','scope'=>'scope','active'=>'active','ignoreCustomDataSourceLinks'=>'ignoreCustomDataSourceLinks','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['name','scope','active','fields','ignoreCustomDataSourceLinks']
+       'json' => ['name','scope','active','ignoreCustomDataSourceLinks'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/addSearchAndReplaceFilter', function ($request,
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','searchAndReplaceDetails'=>'searchAndReplaceDetails'];
     $optionalParams = ['name'=>'name','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','name','type','searchAndReplaceDetails']
+       'json' => ['name','type','searchAndReplaceDetails'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

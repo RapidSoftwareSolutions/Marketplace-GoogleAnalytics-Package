@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/updateAdwordsPropertyLink', function ($request,
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','webPropertyAdWordsLinkId'=>'webPropertyAdWordsLinkId'];
     $optionalParams = ['adWordsAccounts'=>'adWordsAccounts','name'=>'name','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['adWordsAccounts','name','fields']
+       'json' => ['adWordsAccounts','name'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

@@ -20,11 +20,12 @@ $app->post('/api/GoogleAnalytics/listProfiles', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/profiles";
-
+    $data['max-results'] = (int)$data['max-results'];
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);

@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/addIncludeFilter', function ($request, $respons
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','includeDetails'=>'includeDetails'];
     $optionalParams = ['name'=>'name','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','name','type','includeDetails']
+       'json' => ['name','type','includeDetails'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

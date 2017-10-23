@@ -13,14 +13,13 @@ $app->post('/api/GoogleAnalytics/updateCustomMetric', function ($request, $respo
     }
 
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','customMetricId'=>'customMetricId','type'=>'type'];
-    $optionalParams = ['name'=>'name','scope'=>'scope','active'=>'active','maxValue'=>'max-value','minValue'=>'min-value','fields'=>'fields'];
+    $optionalParams = ['name'=>'name','scope'=>'scope','active'=>'active','maxValue'=>'max_value','minValue'=>'min_value','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['name','scope','active','fields','type','max-value','min-value']
+       'json' => ['name','scope','active','type','max_value','min_value'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
-
-    
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/customMetrics/{$data['customMetricId']}";

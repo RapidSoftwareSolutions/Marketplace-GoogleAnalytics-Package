@@ -91,610 +91,7 @@
                 }
             ]
         },
-        {
-            "name": "getAnalytics",
-            "description": "Returns Analytics data for a view (profile).",
-            "args": [
-                {
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "OAuth 2.0 token for the current user.",
-                    "required": true
-                },
-                {
-                    "name": "analyticsId",
-                    "type": "String",
-                    "info": "Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. (string)",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "ids"
-                    }
-                },
-                {
-                    "name": "startDate",
-                    "type": "String",
-                    "info": "Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "start-date"
-                    }
-                },
-                {
-                    "name": "endDate",
-                    "type": "String",
-                    "info": "End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "end-date"
-                    }
-                },
-                {
-                    "name": "metrics",
-                    "type": "List",
-                    "structure": {
-                        "name": "metric",
-                        "type": "String",
-                        "info": "Single metric to get"
-                    },
-                    "info": "List of Analytics metrics.  E.g., 'ga:sessions,ga:pageviews'.",
-                    "required": true,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "dimensions",
-                    "type": "List",
-                    "structure": {
-                        "name": "dimension",
-                        "type": "String",
-                        "info": "Single dimension to get"
-                    },
-                    "info": "List of Analytics dimensions. E.g., 'ga:browser,ga:city'. ",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "filters",
-                    "type": "List",
-                    "structure": {
-                        "name": "filter",
-                        "type": "String",
-                        "info": "Single filter to get"
-                    },
-                    "info": "List of dimension or metric filters to be applied to Analytics data. ",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "includeEmptyRows",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "The response will include empty rows if this parameter is set to true, the default is true",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "include-empty-rows"
-                    }
-                },
-                {
-                    "name": "maxResults",
-                    "type": "Number",
-                    "info": "The maximum number of entries to include in this feed.",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "max-results"
-                    }
-                },
-                {
-                    "name": "samplingLevel",
-                    "type": "String",
-                    "info": "The desired sampling level.",
-                    "required": false
-                },
-                {
-                    "name": "segment",
-                    "type": "String",
-                    "info": "An Analytics segment to be applied to data.",
-                    "required": false
-                },
-                {
-                    "name": "sort",
-                    "type": "List",
-                    "structure": {
-                        "name": "sort",
-                        "type": "String",
-                        "info": "Single sort to apply"
-                    },
-                    "info": "List of dimensions or metrics that determine the sort order for Analytics data.",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "startIndex",
-                    "type": "Number",
-                    "info": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "start-index"
-                    }
-                },
-                {
-                    "name": "fields",
-                    "type": "List",
-                    "structure": {
-                        "name": "field",
-                        "type": "Select",
-                        "options": [
-                            "columnHeaders",
-                            "containsSampledData",
-                            "dataLastRefreshed",
-                            "dataTable",
-                            "id",
-                            "itemsPerPage",
-                            "kind",
-                            "nextLink",
-                            "previousLink",
-                            "profileInfo",
-                            "query",
-                            "rows",
-                            "sampleSize",
-                            "sampleSpace",
-                            "selfLink",
-                            "totalResults",
-                            "totalsForAllResults"
-                        ],
-                        "info": "Single field"
-                    },
-                    "info": "Selector specifying which fields to include in a partial response.",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                }
-            ],
-            "vendorRequest": {
-                "url": "https:\/\/www.googleapis.com\/analytics\/v3\/data\/ga",
-                "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "ids",
-                            "start-date",
-                            "end-date",
-                            "metrics",
-                            "dimensions",
-                            "filters",
-                            "include-empty-rows",
-                            "max-results",
-                            "samplingLevel",
-                            "segment",
-                            "sort",
-                            "start-index",
-                            "fields"
-                        ]
-                    }
-                ],
-                "headers": {
-                    "Authorization": "Bearer {$data['accessToken']}"
-                }
-            },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
-        },
-        {
-            "name": "getMultiChannelAnalytics",
-            "description": "Returns Analytics Multi-Channel Funnels data for a view",
-            "args": [
-                {
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "OAuth 2.0 token for the current user.",
-                    "required": true
-                },
-                {
-                    "name": "analyticsId",
-                    "type": "String",
-                    "info": "Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. (string)",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "ids"
-                    }
-                },
-                {
-                    "name": "startDate",
-                    "type": "String",
-                    "info": "Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "start-date"
-                    }
-                },
-                {
-                    "name": "endDate",
-                    "type": "String",
-                    "info": "End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "end-date"
-                    }
-                },
-                {
-                    "name": "metrics",
-                    "type": "List",
-                    "structure": {
-                        "name": "metric",
-                        "type": "String",
-                        "info": "Single metric to get"
-                    },
-                    "info": "List of Analytics metrics.  E.g., 'ga:sessions,ga:pageviews'.",
-                    "required": true,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "dimensions",
-                    "type": "List",
-                    "structure": {
-                        "name": "dimension",
-                        "type": "String",
-                        "info": "Single dimension to get"
-                    },
-                    "info": "List of Analytics dimensions. E.g., 'ga:browser,ga:city'. ",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "filters",
-                    "type": "List",
-                    "structure": {
-                        "name": "filter",
-                        "type": "String",
-                        "info": "Single filter to get"
-                    },
-                    "info": "List of dimension or metric filters to be applied to Analytics data. ",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "includeEmptyRows",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "The response will include empty rows if this parameter is set to true, the default is true",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "include-empty-rows"
-                    }
-                },
-                {
-                    "name": "maxResults",
-                    "type": "Number",
-                    "info": "The maximum number of entries to include in this feed.",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "max-results"
-                    }
-                },
-                {
-                    "name": "samplingLevel",
-                    "type": "String",
-                    "info": "The desired sampling level.",
-                    "required": false
-                },
-                {
-                    "name": "segment",
-                    "type": "String",
-                    "info": "An Analytics segment to be applied to data.",
-                    "required": false
-                },
-                {
-                    "name": "sort",
-                    "type": "List",
-                    "structure": {
-                        "name": "sort",
-                        "type": "String",
-                        "info": "Single sort to apply"
-                    },
-                    "info": "List of dimensions or metrics that determine the sort order for Analytics data.",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "startIndex",
-                    "type": "Number",
-                    "info": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "start-index"
-                    }
-                },
-                {
-                    "name": "fields",
-                    "type": "List",
-                    "structure": {
-                        "name": "field",
-                        "type": "Select",
-                        "options": [
-                            "columnHeaders",
-                            "containsSampledData",
-                            "dataLastRefreshed",
-                            "dataTable",
-                            "id",
-                            "itemsPerPage",
-                            "kind",
-                            "nextLink",
-                            "previousLink",
-                            "profileInfo",
-                            "query",
-                            "rows",
-                            "sampleSize",
-                            "sampleSpace",
-                            "selfLink",
-                            "totalResults",
-                            "totalsForAllResults"
-                        ],
-                        "info": "Single field"
-                    },
-                    "info": "Selector specifying which fields to include in a partial response.",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                }
-            ],
-            "vendorRequest": {
-                "url": "https:\/\/www.googleapis.com\/analytics\/v3\/data\/mcf",
-                "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "ids",
-                            "start-date",
-                            "end-date",
-                            "metrics",
-                            "dimensions",
-                            "filters",
-                            "include-empty-rows",
-                            "max-results",
-                            "samplingLevel",
-                            "segment",
-                            "sort",
-                            "start-index",
-                            "fields"
-                        ]
-                    }
-                ],
-                "headers": {
-                    "Authorization": "Bearer {$data['accessToken']}"
-                }
-            },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
-        },
-        {
-            "name": "getRealtimeAnalytics",
-            "description": "Returns real time data for a view (profile)",
-            "args": [
-                {
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "OAuth 2.0 token for the current user.",
-                    "required": true
-                },
-                {
-                    "name": "analyticsId",
-                    "type": "String",
-                    "info": "Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. (string)",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "ids"
-                    }
-                },
-                {
-                    "name": "metrics",
-                    "type": "List",
-                    "structure": {
-                        "name": "metric",
-                        "type": "String",
-                        "info": "Single metric to get"
-                    },
-                    "info": "List of Analytics metrics.  E.g., 'ga:sessions,ga:pageviews'.",
-                    "required": true,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "dimensions",
-                    "type": "List",
-                    "structure": {
-                        "name": "dimension",
-                        "type": "String",
-                        "info": "Single dimension to get"
-                    },
-                    "info": "List of Analytics dimensions. E.g., 'ga:browser,ga:city'. ",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "filters",
-                    "type": "List",
-                    "structure": {
-                        "name": "filter",
-                        "type": "String",
-                        "info": "Single filter to get"
-                    },
-                    "info": "List of dimension or metric filters to be applied to Analytics data. ",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "includeEmptyRows",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "The response will include empty rows if this parameter is set to true, the default is true",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "include-empty-rows"
-                    }
-                },
-                {
-                    "name": "maxResults",
-                    "type": "Number",
-                    "info": "The maximum number of entries to include in this feed.",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "max-results"
-                    }
-                },
-                {
-                    "name": "samplingLevel",
-                    "type": "String",
-                    "info": "The desired sampling level.",
-                    "required": false
-                },
-                {
-                    "name": "segment",
-                    "type": "String",
-                    "info": "An Analytics segment to be applied to data.",
-                    "required": false
-                },
-                {
-                    "name": "sort",
-                    "type": "List",
-                    "structure": {
-                        "name": "sort",
-                        "type": "String",
-                        "info": "Single sort to apply"
-                    },
-                    "info": "List of dimensions or metrics that determine the sort order for Analytics data.",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "startIndex",
-                    "type": "Number",
-                    "info": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "start-index"
-                    }
-                },
-                {
-                    "name": "fields",
-                    "type": "List",
-                    "structure": {
-                        "name": "field",
-                        "type": "Select",
-                        "options": [
-                            "columnHeaders",
-                            "containsSampledData",
-                            "dataLastRefreshed",
-                            "dataTable",
-                            "id",
-                            "itemsPerPage",
-                            "kind",
-                            "nextLink",
-                            "previousLink",
-                            "profileInfo",
-                            "query",
-                            "rows",
-                            "sampleSize",
-                            "sampleSpace",
-                            "selfLink",
-                            "totalResults",
-                            "totalsForAllResults"
-                        ],
-                        "info": "Single field"
-                    },
-                    "info": "Selector specifying which fields to include in a partial response.",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                }
-            ],
-            "vendorRequest": {
-                "url": "https:\/\/www.googleapis.com\/analytics\/v3\/data\/realtime",
-                "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "ids",
-                            "metrics",
-                            "dimensions",
-                            "filters",
-                            "include-empty-rows",
-                            "max-results",
-                            "samplingLevel",
-                            "segment",
-                            "sort",
-                            "start-index",
-                            "fields"
-                        ]
-                    }
-                ],
-                "headers": {
-                    "Authorization": "Bearer {$data['accessToken']}"
-                }
-            },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
-        },
+
         {
             "name": "listAccountSummaries",
             "description": "Returns real time data for a view (profile)",
@@ -899,9 +296,15 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
+
                             "permissions",
                             "userRef"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -996,9 +399,15 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
+
                             "permissions",
                             "userRef"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -1135,7 +544,7 @@
                         "info": "Single permission"
                     },
                     "info": "Permissions that a user has been assigned at this very level.",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "userRef",
@@ -1158,9 +567,15 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
+
                             "permissions",
                             "userRef"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -1431,7 +846,12 @@
                         "type": "json",
                         "parameters": [
                             "adWordsAccounts",
-                            "name",
+                            "name"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
                             "fields"
                         ]
                     }
@@ -1599,7 +1019,12 @@
                         "type": "json",
                         "parameters": [
                             "adWordsAccounts",
-                            "name",
+                            "name"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
                             "fields"
                         ]
                     }
@@ -2033,8 +1458,13 @@
                             "name",
                             "scope",
                             "active",
-                            "fields",
                             "ignoreCustomDataSourceLinks"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -2182,7 +1612,7 @@
                     "info": "The max value of the custom metric.",
                     "required": false,
                     "vendorSchema": {
-                        "name": "max-value"
+                        "name": "max_value"
                     }
                 },
                 {
@@ -2191,7 +1621,7 @@
                     "info": "The min value of the custom metric.",
                     "required": false,
                     "vendorSchema": {
-                        "name": "min-value"
+                        "name": "min_value"
                     }
                 },
                 {
@@ -2218,8 +1648,8 @@
                             "active",
                             "fields",
                             "type",
-                            "max-value",
-                            "min-value"
+                            "max_value",
+                            "min_value"
                         ]
                     }
                 ],
@@ -2387,7 +1817,7 @@
                     "info": "The max value of the custom metric.",
                     "required": false,
                     "vendorSchema": {
-                        "name": "max-value"
+                        "name": "max_value"
                     }
                 },
                 {
@@ -2396,7 +1826,7 @@
                     "info": "The min value of the custom metric.",
                     "required": false,
                     "vendorSchema": {
-                        "name": "min-value"
+                        "name": "min_value"
                     }
                 },
                 {
@@ -2421,10 +1851,15 @@
                             "name",
                             "scope",
                             "active",
-                            "fields",
                             "type",
-                            "max-value",
-                            "min-value"
+                            "max_value",
+                            "min_value"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -3200,7 +2635,7 @@
                     "name": "name",
                     "type": "String",
                     "info": "Name of the filter",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "advancedDetails",
@@ -3232,10 +2667,15 @@
                             }
                         ],
                         "parameters": [
-                            "fields",
                             "name",
                             "type",
                             "advancedDetails"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -3274,7 +2714,7 @@
                     "name": "name",
                     "type": "String",
                     "info": "Name of the filter",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "excludeDetails",
@@ -3306,10 +2746,15 @@
                             }
                         ],
                         "parameters": [
-                            "fields",
                             "name",
                             "type",
                             "excludeDetails"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -3348,7 +2793,7 @@
                     "name": "name",
                     "type": "String",
                     "info": "Name of the filter",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "lowercaseDetails",
@@ -3422,7 +2867,7 @@
                     "name": "name",
                     "type": "String",
                     "info": "Name of the filter",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "uppercaseDetails",
@@ -3454,10 +2899,15 @@
                             }
                         ],
                         "parameters": [
-                            "fields",
                             "name",
                             "type",
                             "uppercaseDetails"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -3496,7 +2946,7 @@
                     "name": "name",
                     "type": "String",
                     "info": "Name of the filter",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "searchAndReplaceDetails",
@@ -3528,10 +2978,15 @@
                             }
                         ],
                         "parameters": [
-                            "fields",
                             "name",
                             "type",
                             "searchAndReplaceDetails"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -3570,7 +3025,7 @@
                     "name": "name",
                     "type": "String",
                     "info": "Name of the filter",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "includeDetails",
@@ -3602,10 +3057,15 @@
                             }
                         ],
                         "parameters": [
-                            "fields",
                             "name",
                             "type",
                             "includeDetails"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -4189,9 +3649,14 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
                             "filterRef",
                             "rank"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -4371,9 +3836,14 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
                             "filterRef",
                             "rank"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -4531,9 +4001,14 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
                             "permissions",
                             "userRef"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -4632,9 +4107,14 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
                             "permissions",
                             "userRef"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -4810,7 +4290,7 @@
                         "info": "Single permission"
                     },
                     "info": "Permissions that a user has been assigned at this very level.",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "userRef",
@@ -4833,9 +4313,14 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
                             "permissions",
                             "userRef"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -6119,7 +5604,10 @@
                         "info": "Single field"
                     },
                     "info": "Selector specifying which fields to include in a partial response.",
-                    "required": false
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toString:{,}"
+                    }
                 }
             ],
             "vendorRequest": {
@@ -6179,7 +5667,11 @@
                         "info": "Single field"
                     },
                     "info": "Selector specifying which fields to include in a partial response.",
-                    "required": false
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toString:{,}"
+                    }
+
                 },
                 {
                     "name": "maxResults",
@@ -6259,7 +5751,10 @@
                         "info": "Single field"
                     },
                     "info": "Selector specifying which fields to include in a partial response.",
-                    "required": false
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toString:{,}"
+                    }
                 }
             ],
             "vendorRequest": {
@@ -6313,7 +5808,10 @@
                         "info": "Single field"
                     },
                     "info": "Selector specifying which fields to include in a partial response.",
-                    "required": false
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toString:{,}"
+                    }
                 },
                 {
                     "name": "maxResults",
@@ -6495,9 +5993,14 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
                             "permissions",
                             "userRef"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -6590,9 +6093,14 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
                             "permissions",
                             "userRef"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],
@@ -6748,7 +6256,7 @@
                         "info": "Single permission"
                     },
                     "info": "Permissions that a user has been assigned at this very level.",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "userRef",
@@ -6771,9 +6279,14 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "fields",
                             "permissions",
                             "userRef"
+                        ]
+                    },
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "fields"
                         ]
                     }
                 ],

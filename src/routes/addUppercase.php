@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/addUppercase', function ($request, $response) {
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','uppercaseDetails'=>'uppercaseDetails'];
     $optionalParams = ['name'=>'name','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','name','type','uppercaseDetails']
+       'json' => ['name','type','uppercaseDetails'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/addUserToAccountById', function ($request, $res
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','localPermissions'=>'localPermissions','userId'=>'userId'];
     $optionalParams = ['fields'=>'fields','entity'=>'entity'];
     $bodyParams = [
-       'json' => ['fields','permissions','userRef']
+       'json' => ['permissions','userRef'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

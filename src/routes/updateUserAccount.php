@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/updateUserAccount', function ($request, $respon
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','linkId'=>'linkId'];
     $optionalParams = ['fields'=>'fields','entity'=>'entity','localPermissions'=>'localPermissions','userRef'=>'userRef'];
     $bodyParams = [
-       'json' => ['fields','permissions','userRef']
+       'json' => ['permissions','userRef'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

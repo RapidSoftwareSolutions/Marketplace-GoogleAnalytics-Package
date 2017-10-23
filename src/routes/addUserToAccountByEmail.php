@@ -15,12 +15,11 @@ $app->post('/api/GoogleAnalytics/addUserToAccountByEmail', function ($request, $
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','localPermissions'=>'localPermissions','userEmail'=>'userEmail'];
     $optionalParams = ['fields'=>'fields','entity'=>'entity'];
     $bodyParams = [
-       'json' => ['fields','permissions','userRef']
+       'json' => ['permissions','userRef'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
-
-    
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/entityUserLinks";

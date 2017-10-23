@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/addProfileFilterLink', function ($request, $res
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','profileId'=>'profileId','filterRefId'=>'filterRefId'];
     $optionalParams = ['rank'=>'rank','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','filterRef','rank']
+       'json' => ['filterRef','rank'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

@@ -2,7 +2,7 @@
 
 # GoogleAnalytics Package
 Programmatically create, access and manage Google Analytics entities such as accounts, properties, views, etc. Manage user permissions and import data.
-* Domain: [GoogleAnalytics](https://www.analytics.google.com/)
+* Domain: [GoogleAnalytics](https://analytics.google.com/)
 * Credentials: apiKey, apiSecret
 
 ## How to get credentials: 
@@ -33,63 +33,6 @@ Exchange code for access token.
 | code        | String     | The authorization code that is returned from the initial request.
 | redirectUri | String     | The URI that you specify in the API Console, as described in Set a redirect URI.
 
-## GoogleAnalytics.getAnalytics
-Returns Analytics data for a view (profile).
-
-| Field           | Type  | Description
-|-----------------|-------|----------
-| accessToken     | String| OAuth 2.0 token for the current user.
-| analyticsId     | String| Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. (string)
-| startDate       | String| Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-| endDate         | String| End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
-| metrics         | List  | List of Analytics metrics.  E.g., 'ga:sessions,ga:pageviews'.
-| dimensions      | List  | List of Analytics dimensions. E.g., 'ga:browser,ga:city'. 
-| filters         | List  | List of dimension or metric filters to be applied to Analytics data. 
-| includeEmptyRows| Select| The response will include empty rows if this parameter is set to true, the default is true
-| maxResults      | Number| The maximum number of entries to include in this feed.
-| samplingLevel   | String| The desired sampling level.
-| segment         | String| An Analytics segment to be applied to data.
-| sort            | List  | List of dimensions or metrics that determine the sort order for Analytics data.
-| startIndex      | Number| An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-| fields          | List  | Selector specifying which fields to include in a partial response.
-
-## GoogleAnalytics.getMultiChannelAnalytics
-Returns Analytics Multi-Channel Funnels data for a view
-
-| Field           | Type  | Description
-|-----------------|-------|----------
-| accessToken     | String| OAuth 2.0 token for the current user.
-| analyticsId     | String| Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. (string)
-| startDate       | String| Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-| endDate         | String| End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
-| metrics         | List  | List of Analytics metrics.  E.g., 'ga:sessions,ga:pageviews'.
-| dimensions      | List  | List of Analytics dimensions. E.g., 'ga:browser,ga:city'. 
-| filters         | List  | List of dimension or metric filters to be applied to Analytics data. 
-| includeEmptyRows| Select| The response will include empty rows if this parameter is set to true, the default is true
-| maxResults      | Number| The maximum number of entries to include in this feed.
-| samplingLevel   | String| The desired sampling level.
-| segment         | String| An Analytics segment to be applied to data.
-| sort            | List  | List of dimensions or metrics that determine the sort order for Analytics data.
-| startIndex      | Number| An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-| fields          | List  | Selector specifying which fields to include in a partial response.
-
-## GoogleAnalytics.getRealtimeAnalytics
-Returns real time data for a view (profile)
-
-| Field           | Type  | Description
-|-----------------|-------|----------
-| accessToken     | String| OAuth 2.0 token for the current user.
-| analyticsId     | String| Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. (string)
-| metrics         | List  | List of Analytics metrics.  E.g., 'ga:sessions,ga:pageviews'.
-| dimensions      | List  | List of Analytics dimensions. E.g., 'ga:browser,ga:city'. 
-| filters         | List  | List of dimension or metric filters to be applied to Analytics data. 
-| includeEmptyRows| Select| The response will include empty rows if this parameter is set to true, the default is true
-| maxResults      | Number| The maximum number of entries to include in this feed.
-| samplingLevel   | String| The desired sampling level.
-| segment         | String| An Analytics segment to be applied to data.
-| sort            | List  | List of dimensions or metrics that determine the sort order for Analytics data.
-| startIndex      | Number| An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-| fields          | List  | Selector specifying which fields to include in a partial response.
 
 ## GoogleAnalytics.listAccountSummaries
 Returns real time data for a view (profile)

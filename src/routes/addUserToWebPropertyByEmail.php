@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/addUserToWebPropertyByEmail', function ($reques
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','localPermissions'=>'localPermissions','userEmail'=>'userEmail','webPropertyId'=>'webPropertyId'];
     $optionalParams = ['fields'=>'fields','entity'=>'entity'];
     $bodyParams = [
-       'json' => ['fields','permissions','userRef']
+       'json' => ['permissions','userRef'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

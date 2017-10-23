@@ -15,7 +15,8 @@ $app->post('/api/GoogleAnalytics/addExcludeFilter', function ($request, $respons
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','excludeDetails'=>'excludeDetails'];
     $optionalParams = ['name'=>'name','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','name','type','excludeDetails']
+       'json' => ['fields','name','type','excludeDetails'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
