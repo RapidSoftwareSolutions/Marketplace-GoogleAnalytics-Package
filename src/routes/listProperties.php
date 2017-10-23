@@ -25,7 +25,7 @@ $app->post('/api/GoogleAnalytics/listProperties', function ($request, $response)
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties";
 
-    $data['max-results'] = (int)$data['max-results'];
+    if(strlen($data['max-results']) > 0) {$data['max-results'] = (int)$data['max-results'];}
     $data['fields'] = \Models\Params::toString($data['fields'], ',');
 
 

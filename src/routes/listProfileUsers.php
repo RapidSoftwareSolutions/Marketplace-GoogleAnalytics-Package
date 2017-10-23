@@ -27,7 +27,7 @@ $app->post('/api/GoogleAnalytics/listProfileUsers', function ($request, $respons
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/profiles/{$data['profileId']}/entityUserLinks";
 
 
-    $data['max-results'] = (int)$data['max-results'];
+    if(strlen($data['max-results']) > 0) {$data['max-results'] = (int)$data['max-results'];}
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];
      
