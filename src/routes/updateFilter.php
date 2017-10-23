@@ -20,7 +20,7 @@ $app->post('/api/GoogleAnalytics/updateFilter', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+    $data['id'] = $data['accountId'];
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/filters/{$data['filterId']}";
