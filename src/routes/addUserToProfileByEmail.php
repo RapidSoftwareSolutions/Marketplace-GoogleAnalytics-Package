@@ -15,7 +15,7 @@ $app->post('/api/GoogleAnalytics/addUserToProfileByEmail', function ($request, $
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','localPermissions'=>'localPermissions','userEmail'=>'userEmail','webPropertyId'=>'webPropertyId','profileId'=>'profileId'];
     $optionalParams = ['fields'=>'fields','entity'=>'entity'];
     $bodyParams = [
-       'json' => ['fields','permissions','userRef']
+       'json' => ['fields','permissions','userRef'],
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

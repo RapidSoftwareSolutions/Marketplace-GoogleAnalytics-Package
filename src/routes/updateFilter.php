@@ -15,10 +15,12 @@ $app->post('/api/GoogleAnalytics/updateFilter', function ($request, $response) {
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','filterId'=>'filterId'];
     $optionalParams = ['name'=>'name','type'=>'type','advancedDetails'=>'advancedDetails','excludeDetails'=>'excludeDetails','includeDetails'=>'includeDetails','lowercaseDetails'=>'lowercaseDetails','uppercaseDetails'=>'uppercaseDetails','searchAndReplaceDetails'=>'searchAndReplaceDetails','fields'=>'fields', 'id'=> 'id'];
     $bodyParams = [
-       'json' => ['fields','name','type','advancedDetails','excludeDetails','includeDetails','lowercaseDetails','searchAndReplaceDetails','uppercaseDetails', 'id']
+       'json' => ['name','type','advancedDetails','excludeDetails','includeDetails','lowercaseDetails','searchAndReplaceDetails','uppercaseDetails', 'id'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
 
     $data['id'] = (int)$data['filterId'];
     $client = $this->httpClient;

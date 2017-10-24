@@ -15,12 +15,14 @@ $app->post('/api/GoogleAnalytics/addRemarketingAudience', function ($request, $r
     $requiredParams = ['linkedAdAccounts'=>'linkedAdAccounts','accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','audienceDefinition'=>'audienceDefinition','name'=>'name','audienceType'=>'audienceType','stateBasedAudienceDefinition'=>'stateBasedAudienceDefinition', 'linkedViews'=> 'linkedViews'];
     $optionalParams = ['fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','audienceDefinition','audienceType','linkedAdAccounts','name','stateBasedAudienceDefinition', 'linkedViews']
+       'json' => ['audienceDefinition','audienceType','linkedAdAccounts','name','stateBasedAudienceDefinition', 'linkedViews'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
+
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/remarketingAudiences";

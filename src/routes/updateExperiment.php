@@ -15,10 +15,12 @@ $app->post('/api/GoogleAnalytics/updateExperiment', function ($request, $respons
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','profileId'=>'profileId','experimentId'=>'experimentId'];
     $optionalParams = ['name'=>'name','status'=>'status','variations'=>'variations','description'=>'description','editableInGaUi'=>'editableInGaUi','equalWeighting'=>'equalWeighting','minimumExperimentLengthInDays'=>'minimumExperimentLengthInDays','objectiveMetric'=>'objectiveMetric','optimizationType'=>'optimizationType','rewriteVariationUrlsAsOriginal'=>'rewriteVariationUrlsAsOriginal','servingFramework'=>'servingFramework','trafficCoverage'=>'trafficCoverage','winnerConfidenceLevel'=>'winnerConfidenceLevel','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['winnerConfidenceLevel','trafficCoverage','servingFramework','rewriteVariationUrlsAsOriginal','optimizationType','fields','name','status','variations','description','editableInGaUi','equalWeighting','minimumExperimentLengthInDays','objectiveMetric']
+       'json' => ['winnerConfidenceLevel','trafficCoverage','servingFramework','rewriteVariationUrlsAsOriginal','optimizationType','name','status','variations','description','editableInGaUi','equalWeighting','minimumExperimentLengthInDays','objectiveMetric'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
 
     
 

@@ -15,12 +15,14 @@ $app->post('/api/GoogleAnalytics/addCustomDimension', function ($request, $respo
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','name'=>'name','scope'=>'scope','active'=>'active'];
     $optionalParams = ['fields'=>'fields'];
     $bodyParams = [
-       'json' => ['name','scope','active','fields']
+       'json' => ['name','scope','active'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
+
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/customDimensions";

@@ -15,10 +15,12 @@ $app->post('/api/GoogleAnalytics/updateRemarketingAudience', function ($request,
     $requiredParams = ['linkedAdAccounts'=>'linkedAdAccounts','accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','remarketingAudienceId'=>'remarketingAudienceId','name'=>'name','stateBasedAudienceDefinition'=>'stateBasedAudienceDefinition', 'linkedViews'=> 'linkedViews'];
     $optionalParams = ['audienceType'=>'audienceType','linkedAdAccounts'=>'linkedAdAccounts','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','audienceDefinition','audienceType','linkedAdAccounts','name','stateBasedAudienceDefinition', 'linkedViews']
+       'json' => ['audienceDefinition','audienceType','linkedAdAccounts','name','stateBasedAudienceDefinition', 'linkedViews'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
 
     
 

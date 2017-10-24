@@ -15,10 +15,12 @@ $app->post('/api/GoogleAnalytics/addCustomMetric', function ($request, $response
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','webPropertyId'=>'webPropertyId','name'=>'name','scope'=>'scope','active'=>'active','type'=>'type'];
     $optionalParams = ['maxValue'=>'max_value','minValue'=>'min_value','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['name','scope','active','fields','type','max_value','min_value']
+       'json' => ['name','scope','active','type','max_value','min_value'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
 
     
 

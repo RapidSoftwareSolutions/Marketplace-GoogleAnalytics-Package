@@ -15,12 +15,14 @@ $app->post('/api/GoogleAnalytics/addLowercaseFilter', function ($request, $respo
     $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','lowercaseDetails'=>'lowercaseDetails'];
     $optionalParams = ['name'=>'name','fields'=>'fields'];
     $bodyParams = [
-       'json' => ['fields','name','type','lowercaseDetails']
+       'json' => ['name','type','lowercaseDetails'],
+        'query' => ['fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
+
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/filters";
