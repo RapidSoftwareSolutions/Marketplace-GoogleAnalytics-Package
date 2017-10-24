@@ -3210,7 +3210,7 @@
         },
         {
             "name": "replaceFilter",
-            "description": "Replace a filter. ",
+            "description": "Replace a filter with filter of other type.",
             "args": [
                 {
                     "name": "accessToken",

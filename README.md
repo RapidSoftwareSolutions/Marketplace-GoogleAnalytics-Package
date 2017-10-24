@@ -476,7 +476,7 @@ Update a filter.
 | fields                 | List  | Selector specifying which fields to include in a partial response.
 
 ## GoogleAnalytics.replaceFilter
-Replace a filter. 
+Replace a filter with filter of other type. 
 
 | Field                  | Type  | Description
 |------------------------|-------|----------
