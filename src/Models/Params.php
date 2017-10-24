@@ -21,7 +21,7 @@ class Params
 
         foreach ($requestParams as $key=>$value)
         {
-            if(array_key_exists($key, $optionalParams) && !empty($value))
+            if(array_key_exists($key, $optionalParams) && (strlen($value) > 0 || !empty($value)))
             {
                 $data[$optionalParams[$key]] = $value;
             }
