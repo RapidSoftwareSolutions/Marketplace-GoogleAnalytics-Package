@@ -24,7 +24,8 @@ $app->post('/api/GoogleAnalytics/updateCustomMetric', function ($request, $respo
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/webproperties/{$data['webPropertyId']}/customMetrics/{$data['customMetricId']}";
 
-    
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
+
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];

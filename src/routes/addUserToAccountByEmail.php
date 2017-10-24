@@ -23,6 +23,7 @@ $app->post('/api/GoogleAnalytics/addUserToAccountByEmail', function ($request, $
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/entityUserLinks";
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
 
     $data['userRef']['email'] = $data['userEmail'];
 $data['permissions']['local'] = $data['localPermissions'];

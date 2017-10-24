@@ -20,6 +20,7 @@ $app->post('/api/GoogleAnalytics/addAdvancedFilter', function ($request, $respon
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
+    $data['fields'] = \Models\Params::toString($data['fields'], ',');
 
 
 

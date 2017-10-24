@@ -20,12 +20,11 @@ $app->post('/api/GoogleAnalytics/updateFilter', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    $data['id'] = $data['accountId'];
-
+    $data['id'] = (int)$data['filterId'];
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/analytics/v3/management/accounts/{$data['accountId']}/filters/{$data['filterId']}";
 
-    
+
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['accessToken']}"];
