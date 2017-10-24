@@ -1,10 +1,10 @@
 <?php
 
-$app->post('/api/GoogleAnalytics/updateFilter', function ($request, $response) {
+$app->post('/api/GoogleAnalytics/replaceFilter', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','accountId','filterId']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','accountId','filterId', 'name', 'type']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,10 +12,10 @@ $app->post('/api/GoogleAnalytics/updateFilter', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'accessToken','accountId'=>'accountId','filterId'=>'filterId'];
+    $requiredParams = ['accessToken'=>'accessToken','name'=>'name','type'=>'type','accountId'=>'accountId','filterId'=>'filterId'];
     $optionalParams = ['name'=>'name','type'=>'type','advancedDetails'=>'advancedDetails','excludeDetails'=>'excludeDetails','includeDetails'=>'includeDetails','lowercaseDetails'=>'lowercaseDetails','uppercaseDetails'=>'uppercaseDetails','searchAndReplaceDetails'=>'searchAndReplaceDetails','fields'=>'fields', 'id'=> 'id'];
     $bodyParams = [
-       'json' => ['name','type','advancedDetails','excludeDetails','includeDetails','lowercaseDetails','searchAndReplaceDetails','uppercaseDetails', 'id'],
+        'json' => ['name','type','advancedDetails','excludeDetails','includeDetails','lowercaseDetails','searchAndReplaceDetails','uppercaseDetails', 'id'],
         'query' => ['fields']
     ];
 
@@ -32,7 +32,7 @@ $app->post('/api/GoogleAnalytics/updateFilter', function ($request, $response) {
 
 
     try {
-        $resp = $client->patch($query_str, $requestParams);
+        $resp = $client->put($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
 
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {

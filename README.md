@@ -475,6 +475,24 @@ Update a filter.
 | searchAndReplaceDetails| JSON  | searchAndReplaceDetails object of the filter
 | fields                 | List  | Selector specifying which fields to include in a partial response.
 
+## GoogleAnalytics.replaceFilter
+Replace a filter. 
+
+| Field                  | Type  | Description
+|------------------------|-------|----------
+| accessToken            | String| OAuth 2.0 token for the current user.
+| accountId              | String| Account id
+| filterId               | String| ID of the filter
+| name                   | String| Name of the filter
+| type                   | Select| Type of the filter
+| advancedDetails        | JSON  | advancedDetails object of the filter
+| excludeDetails         | JSON  | excludeDetails object of the filter
+| includeDetails         | JSON  | includeDetails object of the filter
+| lowercaseDetails       | JSON  | lowercaseDetails object of the filter
+| uppercaseDetails       | JSON  | uppercaseDetails object of the filter
+| searchAndReplaceDetails| JSON  | searchAndReplaceDetails object of the filter
+| fields                 | List  | Selector specifying which fields to include in a partial response.
+
 ## GoogleAnalytics.listFilters
 Lists filters to which the user has access.
 

@@ -3209,6 +3209,130 @@
             ]
         },
         {
+            "name": "replaceFilter",
+            "description": "Replace a filter. ",
+            "args": [
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "OAuth 2.0 token for the current user.",
+                    "required": true
+                },
+                {
+                    "name": "accountId",
+                    "type": "String",
+                    "info": "Account id",
+                    "required": true
+                },
+                {
+                    "name": "filterId",
+                    "type": "String",
+                    "info": "ID of the filter",
+                    "required": true
+                },
+                {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Name of the filter",
+                    "required": true
+                },
+                {
+                    "name": "type",
+                    "type": "Select",
+                    "options": [
+                        "INCLUDE",
+                        "EXCLUDE",
+                        "LOWERCASE",
+                        "UPPERCASE",
+                        "SEARCH_AND_REPLACE",
+                        "ADVANCED"
+                    ],
+                    "info": "Type of the filter",
+                    "required": true
+                },
+                {
+                    "name": "advancedDetails",
+                    "type": "JSON",
+                    "info": "advancedDetails object of the filter",
+                    "required": false
+                },
+                {
+                    "name": "excludeDetails",
+                    "type": "JSON",
+                    "info": "excludeDetails object of the filter",
+                    "required": false
+                },
+                {
+                    "name": "includeDetails",
+                    "type": "JSON",
+                    "info": "includeDetails object of the filter",
+                    "required": false
+                },
+                {
+                    "name": "lowercaseDetails",
+                    "type": "JSON",
+                    "info": "lowercaseDetails object of the filter",
+                    "required": false
+                },
+                {
+                    "name": "uppercaseDetails",
+                    "type": "JSON",
+                    "info": "uppercaseDetails object of the filter",
+                    "required": false
+                },
+                {
+                    "name": "searchAndReplaceDetails",
+                    "type": "JSON",
+                    "info": "searchAndReplaceDetails object of the filter",
+                    "required": false
+                },
+                {
+                    "name": "fields",
+                    "type": "List",
+                    "structure": {
+                        "name": "field",
+                        "type": "String",
+                        "info": "Single field"
+                    },
+                    "info": "Selector specifying which fields to include in a partial response.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/www.googleapis.com\/analytics\/v3\/management\/accounts\/{$data['accountId']}\/filters\/{$data['filterId']}",
+                "method": "put",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "fields",
+                            "name",
+                            "type",
+                            "advancedDetails",
+                            "excludeDetails",
+                            "includeDetails",
+                            "lowercaseDetails",
+                            "searchAndReplaceDetails",
+                            "uppercaseDetails"
+                        ]
+                    }
+                ],
+                "headers": {
+                    "Authorization": "Bearer {$data['accessToken']}"
+                }
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
             "name": "listFilters",
             "description": "Lists filters to which the user has access.",
             "args": [

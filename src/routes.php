@@ -1,5 +1,6 @@
 <?php
 $routes = [
+'replaceFilter',
     'metadata',
     'getAccessToken',
     'getAnalytics',
